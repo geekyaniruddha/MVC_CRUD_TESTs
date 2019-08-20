@@ -1,0 +1,132 @@
+﻿@model MVC_CRUD_TEST.Models.Homemodel
+@{
+    var p = ViewBag.list;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+    @if (p != null)
+    {
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Stream</th>
+                <th>City</th>
+                <th>Gender</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var str in p)
+                {
+                <tr id="Trow">
+                    <td>@str.ID</td>
+                    <td>@str.Name</td>
+                    <td>@str.Roll</td>
+                    <td>@str.Stream</td>
+                    <td>@str.City</td>
+                    <td>@str.Gender</td> 
+                    <td><button type="button" id="Btnedit" class="btn btn-info" data="@str.ID">Edit</button></td>
+                    <td><button type="button" id="Btndel" class="btn btn-danger" data="@str.ID" onclick="Del()">Delete</button></td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+    @using (Html.BeginForm("Index", "Update_Delete", FormMethod.Post))
+    {
+        <div class="container" id="d2">
+            @Html.HiddenFor(M=>M.studentdetails.ID, new {@id="Txtid"})
+            <div class="form-group">
+                <label>Name:</label>
+                @Html.TextAreaFor(M=>M.studentdetails.Name, new { @id = "Txtnm", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Roll:</label>
+                @Html.TextAreaFor(M => M.studentdetails.Roll, new { @id = "Txtroll", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Stream:</label>
+                @Html.TextAreaFor(M => M.studentdetails.Stream, new { @id = "Txtstrm", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>City:</label>
+                @Html.TextAreaFor(M => M.studentdetails.City, new { @id = "Txtcity", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                @Html.TextAreaFor(M => M.studentdetails.Gender, new { @id = "Txtgen", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" id="Btnupdate">Update</button>
+            </div>
+
+        </div>
+    }
+    <script src="~/JS/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#d2").hide();
+        });
+        $(document).on('click', '#Btnedit', function () {
+            $("#d2").show();
+            var id = $(this).attr("data");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetUser", "Update_Delete")',
+                data: { "ide": id },
+                datatype: JSON,
+                success: function (data) {
+                    $("#Txtid").val(data.ID)
+                    $("#Txtnm").val(data.Name);
+                    $("#Txtroll").val(data.Roll);
+                    $("#Txtstrm").val(data.Stream);
+                    $("#Txtcity").val(data.City);
+                    $("#Txtgen").val(data.Gender);
+                },
+                error: function () {
+                    alert("Error")
+                }
+            });
+        });
+        function Del() {
+            confirm("Do You Want to Delete?");
+        }
+        $(document).on('click', '#Btndel', function () {
+            var id = $(this).attr("data");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DelUser", "Update_Delete")',
+                data: { "ide": id },
+                datatype: JSON,
+                success: function (d) {
+                    if(d=="success")
+                    {
+                        $('#Trow').remove();
+                        alert("Delete Successful");
+                    }
+                },
+                error: function () {
+                    alert("Error")
+                }
+
+            });
+        });
+    </script>
+</body>
+</html>

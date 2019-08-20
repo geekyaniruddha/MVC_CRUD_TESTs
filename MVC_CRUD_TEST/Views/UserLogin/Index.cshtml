@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    @using(Html.BeginForm("Index", "UserLogin", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="form-group">
+                <label>Email or Username</label>
+                @Html.TextBox("MailId", null, new {@id="Txtmail", @class="form-control", @placeholder="Your Email"})
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                @Html.Password("Pswd",null, new {@id="Txtpswd", @class="form-control", @placeholder="Your Password" })
+            </div>
+            <div class="form-group">
+                <button type="submit" id="Btnlogin" class="btn btn-info">Login</button>
+                <label id="Lblmsg">@ViewBag.msg</label> 
+            </div>
+        </div>
+    }
+</body>
+</html>
+

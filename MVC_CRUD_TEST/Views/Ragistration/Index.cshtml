@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body class="container">
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" id="Txtnm" placeholder="Your Name" />
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="text" class="form-control" id="Txtmail" placeholder="Enter Email" />
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="text" class="form-control" id="Txtpswd" placeholder="Your Password" />
+    </div>
+
+    <div class="form-group">
+        <label>Phone:</label>
+        <input type="text" class="form-control" id="Txtph" placeholder="Your Phone" />
+    </div>
+
+    <div class="form-group">
+        <input type="button" class="btn btn-info" id="BtnSave" />
+        <label id="Lblmsg"></label>
+        <div id="Link">
+            @Html.ActionLink("Click Here to LogIn", "Index", "UserLogin")
+        </div>
+
+    </div>
+    
+
+    <script src="~/JS/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Link").hide();
+        });
+
+        $(document).on('click', '#BtnSave', function () {
+            var Nm = $("#Txtnm").val();
+            var Email = $("#Txtmail").val();
+            var Pswd = $("#Txtpswd").val();
+            var Phno = $("#Txtph").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveData", "Ragistration")',
+                data: { "Nm": Nm, "Email": Email, "Pswd": Pswd, "Phno": Phno },
+                datatype: JSON,
+                success: function (data) {
+                    if(data=="Success")
+                    {
+                        $("#Lblmsg").text("Insertion Successful")
+                        $("#Link").show();
+                    }
+                },
+                error: function () {
+                    alert("Error")
+                }
+            });
+        });
+    </script>
+</body>
+</html>

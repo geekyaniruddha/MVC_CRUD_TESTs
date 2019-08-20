@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Ani_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ctid" />
+          </Key>
+          <Property Name="ctid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="sid" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Empdt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Img">
+          <Key>
+            <PropertyRef Name="imgid" />
+          </Key>
+          <Property Name="imgid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imgpath" Type="varchar(max)" />
+          <Property Name="imgdesc" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PhoneBook">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="contact" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sec_dt">
+          <Key>
+            <PropertyRef Name="secid" />
+          </Key>
+          <Property Name="secid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="secname" Type="varchar" MaxLength="50" />
+          <Property Name="classname" Type="varchar" MaxLength="50" />
+          <Property Name="stdroll" Type="varchar" MaxLength="50" />
+          <Property Name="stdid" Type="int" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="cid" Type="int" />
+        </EntityType>
+        <EntityType Name="Std_dt">
+          <Key>
+            <PropertyRef Name="stdid" />
+          </Key>
+          <Property Name="stdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stdname" Type="varchar" MaxLength="50" />
+          <Property Name="stdadr" Type="varchar" MaxLength="50" />
+          <Property Name="stdphno" Type="varchar" MaxLength="50" />
+          <Property Name="stdpin" Type="int" />
+          <Property Name="stdcity" Type="varchar" MaxLength="50" />
+          <Property Name="stdgen" Type="varchar" MaxLength="50" />
+          <Property Name="stdpic" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="StudentDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Roll" Type="varchar" MaxLength="50" />
+          <Property Name="Stream" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_dt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Pin" Type="int" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="varchar" MaxLength="255" />
+          <Property Name="Images" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserRagistration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Img" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="sid" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sec_dt_Std_dt">
+          <End Role="Std_dt" Type="Self.Std_dt" Multiplicity="0..1" />
+          <End Role="Sec_dt" Type="Self.Sec_dt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Std_dt">
+              <PropertyRef Name="stdid" />
+            </Principal>
+            <Dependent Role="Sec_dt">
+              <PropertyRef Name="stdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="cid" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ani_dbModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empdt" EntityType="Self.Empdt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Img" EntityType="Self.Img" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneBook" EntityType="Self.PhoneBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sec_dt" EntityType="Self.Sec_dt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Std_dt" EntityType="Self.Std_dt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_dt" EntityType="Self.User_dt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRagistration" EntityType="Self.UserRagistration" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sec_dt_Std_dt" Association="Self.FK_Sec_dt_Std_dt">
+            <End Role="Std_dt" EntitySet="Std_dt" />
+            <End Role="Sec_dt" EntitySet="Sec_dt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ani_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ctid" />
+          </Key>
+          <Property Name="ctid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sid" Type="Int32" />
+          <NavigationProperty Name="State" Relationship="Self.FK_City_State" FromRole="City" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Empdt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Img">
+          <Key>
+            <PropertyRef Name="imgid" />
+          </Key>
+          <Property Name="imgid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imgpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="imgdesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PhoneBook">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Sec_dt">
+          <Key>
+            <PropertyRef Name="secid" />
+          </Key>
+          <Property Name="secid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="secname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdroll" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdid" Type="Int32" />
+          <NavigationProperty Name="Std_dt" Relationship="Self.FK_Sec_dt_Std_dt" FromRole="Sec_dt" ToRole="Std_dt" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Std_dt">
+          <Key>
+            <PropertyRef Name="stdid" />
+          </Key>
+          <Property Name="stdid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stdname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdadr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdphno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdpin" Type="Int32" />
+          <Property Name="stdcity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdgen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stdpic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sec_dt" Relationship="Self.FK_Sec_dt_Std_dt" FromRole="Std_dt" ToRole="Sec_dt" />
+        </EntityType>
+        <EntityType Name="StudentDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Roll" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stream" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User_dt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Pin" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserRagistration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="sid" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="cid" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sec_dt_Std_dt">
+          <End Role="Std_dt" Type="Self.Std_dt" Multiplicity="0..1" />
+          <End Role="Sec_dt" Type="Self.Sec_dt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Std_dt">
+              <PropertyRef Name="stdid" />
+            </Principal>
+            <Dependent Role="Sec_dt">
+              <PropertyRef Name="stdid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ani_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Empdt" EntityType="Self.Empdt" />
+          <EntitySet Name="Img" EntityType="Self.Img" />
+          <EntitySet Name="PhoneBook" EntityType="Self.PhoneBook" />
+          <EntitySet Name="Sec_dt" EntityType="Self.Sec_dt" />
+          <EntitySet Name="State" EntityType="Self.State" />
+          <EntitySet Name="Std_dt" EntityType="Self.Std_dt" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetails" />
+          <EntitySet Name="User_dt" EntityType="Self.User_dt" />
+          <EntitySet Name="UserRagistration" EntityType="Self.UserRagistration" />
+          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sec_dt_Std_dt" Association="Self.FK_Sec_dt_Std_dt">
+            <End Role="Std_dt" EntitySet="Std_dt" />
+            <End Role="Sec_dt" EntitySet="Sec_dt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Ani_dbModelStoreContainer" CdmEntityContainer="Ani_dbEntities">
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="Ani_dbModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ctid" ColumnName="ctid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="Ani_dbModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empdt">
+            <EntityTypeMapping TypeName="Ani_dbModel.Empdt">
+              <MappingFragment StoreEntitySet="Empdt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Img">
+            <EntityTypeMapping TypeName="Ani_dbModel.Img">
+              <MappingFragment StoreEntitySet="Img">
+                <ScalarProperty Name="imgid" ColumnName="imgid" />
+                <ScalarProperty Name="imgpath" ColumnName="imgpath" />
+                <ScalarProperty Name="imgdesc" ColumnName="imgdesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneBook">
+            <EntityTypeMapping TypeName="Ani_dbModel.PhoneBook">
+              <MappingFragment StoreEntitySet="PhoneBook">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sec_dt">
+            <EntityTypeMapping TypeName="Ani_dbModel.Sec_dt">
+              <MappingFragment StoreEntitySet="Sec_dt">
+                <ScalarProperty Name="secid" ColumnName="secid" />
+                <ScalarProperty Name="secname" ColumnName="secname" />
+                <ScalarProperty Name="classname" ColumnName="classname" />
+                <ScalarProperty Name="stdroll" ColumnName="stdroll" />
+                <ScalarProperty Name="stdid" ColumnName="stdid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State">
+            <EntityTypeMapping TypeName="Ani_dbModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Std_dt">
+            <EntityTypeMapping TypeName="Ani_dbModel.Std_dt">
+              <MappingFragment StoreEntitySet="Std_dt">
+                <ScalarProperty Name="stdid" ColumnName="stdid" />
+                <ScalarProperty Name="stdname" ColumnName="stdname" />
+                <ScalarProperty Name="stdadr" ColumnName="stdadr" />
+                <ScalarProperty Name="stdphno" ColumnName="stdphno" />
+                <ScalarProperty Name="stdpin" ColumnName="stdpin" />
+                <ScalarProperty Name="stdcity" ColumnName="stdcity" />
+                <ScalarProperty Name="stdgen" ColumnName="stdgen" />
+                <ScalarProperty Name="stdpic" ColumnName="stdpic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentDetails">
+            <EntityTypeMapping TypeName="Ani_dbModel.StudentDetails">
+              <MappingFragment StoreEntitySet="StudentDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="Stream" ColumnName="Stream" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_dt">
+            <EntityTypeMapping TypeName="Ani_dbModel.User_dt">
+              <MappingFragment StoreEntitySet="User_dt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRagistration">
+            <EntityTypeMapping TypeName="Ani_dbModel.UserRagistration">
+              <MappingFragment StoreEntitySet="UserRagistration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

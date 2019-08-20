@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Ani_dbModelStoreContainer" CdmEntityContainer="Ani_dbEntities">
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="Ani_dbModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="ctid" ColumnName="ctid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="Ani_dbModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empdt">
+      <EntityTypeMapping TypeName="Ani_dbModel.Empdt">
+        <MappingFragment StoreEntitySet="Empdt">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Img">
+      <EntityTypeMapping TypeName="Ani_dbModel.Img">
+        <MappingFragment StoreEntitySet="Img">
+          <ScalarProperty Name="imgid" ColumnName="imgid" />
+          <ScalarProperty Name="imgpath" ColumnName="imgpath" />
+          <ScalarProperty Name="imgdesc" ColumnName="imgdesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneBook">
+      <EntityTypeMapping TypeName="Ani_dbModel.PhoneBook">
+        <MappingFragment StoreEntitySet="PhoneBook">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sec_dt">
+      <EntityTypeMapping TypeName="Ani_dbModel.Sec_dt">
+        <MappingFragment StoreEntitySet="Sec_dt">
+          <ScalarProperty Name="secid" ColumnName="secid" />
+          <ScalarProperty Name="secname" ColumnName="secname" />
+          <ScalarProperty Name="classname" ColumnName="classname" />
+          <ScalarProperty Name="stdroll" ColumnName="stdroll" />
+          <ScalarProperty Name="stdid" ColumnName="stdid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="State">
+      <EntityTypeMapping TypeName="Ani_dbModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Std_dt">
+      <EntityTypeMapping TypeName="Ani_dbModel.Std_dt">
+        <MappingFragment StoreEntitySet="Std_dt">
+          <ScalarProperty Name="stdid" ColumnName="stdid" />
+          <ScalarProperty Name="stdname" ColumnName="stdname" />
+          <ScalarProperty Name="stdadr" ColumnName="stdadr" />
+          <ScalarProperty Name="stdphno" ColumnName="stdphno" />
+          <ScalarProperty Name="stdpin" ColumnName="stdpin" />
+          <ScalarProperty Name="stdcity" ColumnName="stdcity" />
+          <ScalarProperty Name="stdgen" ColumnName="stdgen" />
+          <ScalarProperty Name="stdpic" ColumnName="stdpic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentDetails">
+      <EntityTypeMapping TypeName="Ani_dbModel.StudentDetails">
+        <MappingFragment StoreEntitySet="StudentDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Roll" ColumnName="Roll" />
+          <ScalarProperty Name="Stream" ColumnName="Stream" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_dt">
+      <EntityTypeMapping TypeName="Ani_dbModel.User_dt">
+        <MappingFragment StoreEntitySet="User_dt">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Images" ColumnName="Images" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRagistration">
+      <EntityTypeMapping TypeName="Ani_dbModel.UserRagistration">
+        <MappingFragment StoreEntitySet="UserRagistration">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
